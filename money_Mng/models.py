@@ -29,7 +29,7 @@ class Transaction_Type(models.Model):
                                 help_text=_('Người tạo'),
                             )
     created_at = models.DateTimeField(
-                                editable=True,
+                                editable=False,
                                 blank=False,
                                 null=False,
                                 default=djnow,
@@ -97,7 +97,7 @@ class Transaction(models.Model):
                                 help_text=_('Người cho vay'),
                             )
     type = models.ForeignKey(Transaction_Type,
-                                to_field='name',
+                                to_field='uuid',
                                 related_name='%(app_label)s_%(class)s_type',
                                 on_delete=(models.PROTECT),
                                 editable=False,
@@ -140,58 +140,7 @@ class Transaction(models.Model):
                                 help_text=_('Người tạo'),
                             )
     created_at = models.DateTimeField(
-                                editable=True,
-                                blank=False,
-                                null=False,
-                                default=djnow,
-                                help_text=_('Thời điểm tạo'),
-                            )
-    updated_by = models.ForeignKey(User,
-                                to_field='username',
-                                related_name='%(app_label)s_%(class)s_updated_by',
-                                on_delete=(models.PROTECT),
-                                editable=True,
-                                blank=False,
-                                null=True,
-                                help_text=_('Người cập nhật'),
-                            )
-    updated_at = models.DateTimeField(
-                                editable=True,
-                                blank=False,
-                                null=False,
-                                default=djnow,
-                                help_text=_('Thời điểm cập nhật'),
-                            )
-    
-    def __str__(self):
-        return str(self.name)
-
-
-class Bank(models.Model):
-    uuid = models.UUIDField(default=UUID4,
-                                max_length=64,
                                 editable=False,
-                                unique=True,
-                                primary_key=True,
-                            )
-    name = models.CharField(
-                                editable=True,
-                                blank=True,
-                                null=True,
-                                max_length=250,
-                                help_text=_('Tên'),
-                            )
-    created_by = models.ForeignKey(User,
-                                to_field='username',
-                                related_name='%(app_label)s_%(class)s_created_by',
-                                on_delete=(models.PROTECT),
-                                editable=False,
-                                blank=False,
-                                null=True,
-                                help_text=_('Người tạo'),
-                            )
-    created_at = models.DateTimeField(
-                                editable=True,
                                 blank=False,
                                 null=False,
                                 default=djnow,

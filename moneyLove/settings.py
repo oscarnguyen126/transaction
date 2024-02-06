@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'money_Mng',
     'user_Mng',
-    'noti_Mng',
+    # 'noti_Mng',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +135,5 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "user_Mng.User"
